@@ -1,0 +1,61 @@
+<div class="content_wrapper">
+    <h4>Dynamic Value Change method</h4>
+    <br>
+    <form [formGroup]="myForm">
+        <div class="parent">
+            <div class="input_field">
+                <p>Amount</p>
+                <input class="fields " type="number" formControlName="amount" placeholder="0" />
+            </div>
+            <div class="input_field">
+                <p>Percentage %</p>
+                <input class="fields " type="number" formControlName="percentage" placeholder="0" />
+            </div>
+            <div class="input_field">
+                <p>No of shares</p>
+                <input class="fields " type="number" formControlName="shares" placeholder="0" />
+            </div>
+        </div>
+    </form>
+    <div class="parent">
+        <div class="input_field">
+            <p>Percentage Value</p>
+            <div class="fields value">
+                {{ calculatedPercentageDifference() | number:'1.2-2' }}
+            </div>
+        </div>
+        <div class="input_field">
+            <p>Amount + Percentage Value</p>
+            <div class="fields value add">
+                {{ precentageAmountAddedToAmount() | number:'1.2-2' }}
+            </div>
+        </div>
+        <div class="input_field">
+            <p>Amount - Percentage Value</p>
+            <div class="fields value subtract">
+                {{ precentageAmountRemovedFromAmount() | number:'1.2-2' }}
+            </div>
+        </div>
+    </div>
+
+    <div class="parent">
+        <div class="input_field">
+            <p>No of shares</p>
+            <div class="fields value">
+                {{ noOfShares() }}
+            </div>
+        </div>
+        <div class="input_field">
+            <p>Profit</p>
+            <div class="fields value add">
+                {{ profitDifference() | number:'1.2-2' }}
+            </div>
+        </div>
+        <div class="input_field">
+            <p>Loss</p>
+            <div class="fields value subtract">
+                {{ lossDifference() | number:'1.2-2' }}
+            </div>
+        </div>
+    </div>
+</div>

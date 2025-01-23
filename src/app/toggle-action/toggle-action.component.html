@@ -1,0 +1,112 @@
+<div class="content_wrapper">
+    <h4>Toggle method</h4>
+    <br>
+    <div class="tab_wrapper">
+        @for(option of formulaFor;track $index){
+        <button [class]="selectedFormula() === option ? 'active':''" (click)=" toggleOption(option)">{{option}}</button>
+        }
+    </div>
+
+    @switch (selectedFormula()) {
+    @case ('Percentage') {
+    <div class="example">What is <span class="input_one">{{myForm.get('value')?.value}}</span>% of <span
+            class="input_two">{{myForm.get('amount')?.value}}</span>?
+    </div>
+    @if(displayValue.difference){
+    <div class="example">Answer: <span class="input_one">
+            {{ displayValue.difference | number:'1.0-2' }}
+        </span>
+    </div>
+    }}
+    @case ('Difference') {
+    <div class="example"><span class="input_one">{{myForm.get('value')?.value}}</span> is what percent of <span
+            class="input_two">{{myForm.get('amount')?.value}}</span>?
+    </div>
+    @if(displayValue.percentage){
+    <div class="example">Answer: <span class="input_one">
+            {{ displayValue.percentage | number:'1.0-2' }}
+        </span>
+    </div>
+    }}
+    @case ('Target') {
+    <div class="example">What is the percentage increase/decrease
+        from <span class="input_one">{{myForm.get('amount')?.value}}</span> to <span
+            class="input_two">{{myForm.get('value')?.value}}</span>?
+    </div>
+    @if(displayValue.percentage){
+    <div class="example">Answer: <span class="input_one">
+            {{ displayValue.percentage | number:'1.0-2' }}%
+        </span>
+    </div>
+    }}
+    }
+
+
+    <form [formGroup]="myForm">
+        <div class="parent">
+            <div class="input_field">
+                <p>Amount</p>
+                <input class="fields " type="number" formControlName="amount" placeholder="0" />
+            </div>
+            <!-- <div class="input_field">
+                <p>Calculate with</p>
+                <select class="fields" [value]="selectedFormula()" (change)="onMethodChange($event)"
+                    name="calculateWith" id="calculateWith">
+                    @for(method of formulaFor;track method){
+                    <option [value]="method">{{method}}</option>
+                    }
+                </select>
+            </div> -->
+            <div class="input_field">
+                <p>{{selectedFormula()}}</p>
+                <input class="fields " type="number" formControlName="value" placeholder="0" />
+            </div>
+
+            <div class="input_field">
+                <button class="fields btn" (click)="calculate()">Calculate</button>
+            </div>
+        </div>
+
+        <div class="parent">
+            @if(selectedFormula()!= 'Percentage'){
+            <div class="input_field">
+                <p>Percentage</p>
+                <div class="fields value">
+                    {{ displayValue.percentage | number:'1.0-2' }}%
+                </div>
+            </div>
+            }
+            <div class="input_field">
+                <p>Difference</p>
+                <div class="fields value">
+                    {{ displayValue.difference | number:'1.0-2' }}
+                </div>
+            </div>
+            <div class="input_field">
+                <p>Amount + Percentage Value</p>
+                <div class="fields value add">
+                    {{ displayValue.positiveMove| number:'1.0-2' }}
+                </div>
+            </div>
+            <div class="input_field">
+                <p>Amount - Percentage Value</p>
+                <div class="fields value subtract">
+                    {{ displayValue.negativeMove | number:'1.0-2' }}
+                </div>
+            </div>
+        </div>
+
+        <div class="parent">
+            <div class="input_field">
+                <p>No of shares</p>
+                <input class="fields " type="number" formControlName="shares" placeholder="0" />
+            </div>
+            <div class="input_field">
+                <p>Profit/Loss</p>
+                <div class="fields value">
+                    {{ displayValue.profitOrLoss| number:'1.0-2' }}
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,42 @@
+.content_wrapper {
+  padding: 10px;
+  max-width: 1080px;
+  margin: 0px auto;
+}
+
+.parent {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(324px, 1fr));
+  grid-template-rows: auto;
+  grid-gap: 5px;
+  margin-bottom: 10px;
+  .fields {
+    width: 100%;
+  }
+}
+
+.input_field {
+  display: block;
+  flex-direction: column;
+  p {
+    font-size: 12px;
+  }
+  input,
+  select {
+    padding: 10px 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .value {
+    padding: 10px 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f2f2f2;
+    &.add {
+      background-color: #e9f1ea;
+    }
+    &.subtract {
+      background-color: #f1e9e9;
+    }
+  }
+}

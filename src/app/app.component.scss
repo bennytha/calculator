@@ -1,0 +1,24 @@
+.header_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+}
+
+.tab_wrapper {
+  display: flex;
+  max-width: 1080px;
+  margin: 0 auto;
+  margin-top: 10px;
+  button {
+    padding: 10px;
+    border: none;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    &.active {
+      background-color: #212121;
+      color: white;
+    }
+  }
+}
